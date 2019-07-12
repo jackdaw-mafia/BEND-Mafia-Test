@@ -1,4 +1,4 @@
-service: happy-app-northcoders-mafia-110719
+service: appy-app-northcoders-mafia-110719
 
 provider:
   name: aws
@@ -50,7 +50,7 @@ functions:
           cors: true
 
   createOffer:
-    handler: offers/create.createOffer
+    handler: offers/createOffer.createOffer
     events:
       - http:
           path: api/offers

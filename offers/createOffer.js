@@ -9,7 +9,7 @@ const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-depe
 // - AWS Documentation
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-module.exports.create = (event, context, callback) => {
+module.exports.createOffer = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
   if (typeof data.venueName !== "string" || typeof data.address !== "string") {
