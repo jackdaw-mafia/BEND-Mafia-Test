@@ -49,6 +49,14 @@ functions:
           method: delete
           cors: true
 
+  create:
+    handler: offers/create.create
+    events:
+      - http:
+          path: api/offers
+          method: post
+          cors: true
+
 resources:
   Resources:
     PetsTable:

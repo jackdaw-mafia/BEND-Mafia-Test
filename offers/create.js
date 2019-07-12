@@ -14,7 +14,7 @@ module.exports.create = (event, context, callback) => {
   const data = JSON.parse(event.body);
   if (typeof data.venueName !== "string" || typeof data.address !== "string") {
     console.error("Validation Failed");
-    callback(new Error("Couldn't create a new owner profile."));
+    callback(new Error("Couldn't create a new deal."));
     return;
   }
 
@@ -23,16 +23,13 @@ module.exports.create = (event, context, callback) => {
     Item: {
       id: uuid.v1(),
       data_type: data.data_type,
-      venueName: data.venueName,
-      address: data.address,
-      longitude: data.longitude,
-      latitude: data.latitude,
-      email: data.email,
-      photoUri: data.photoUri,
-      shortDescription: data.shortDescription,
-      longDescription: data.longDescription,
-      phoneNumber: data.phoneNumber,
-      place_id: data.place_id,
+      duration: data.duration,
+      price: data.price,
+      drink: data.drink,
+      quantity: data.quantity,
+      type: data.type,
+      coupon_id: data.coupon_id,
+      active: data.active,
       createdAt: timestamp,
       updatedAt: timestamp
     }
@@ -43,7 +40,7 @@ module.exports.create = (event, context, callback) => {
     // handle potential errors
     if (error) {
       console.error(error);
-      callback(new Error("Couldn't create the profile"));
+      callback(new Error("Couldn't post the deal"));
       return;
     }
 
