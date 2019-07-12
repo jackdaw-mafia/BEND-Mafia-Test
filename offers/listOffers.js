@@ -8,10 +8,18 @@ const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-depe
 // - AWS Documentation
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const params = {
-  TableName: process.env.DYNAMODB_TABLE
+  TableName: process.env.DYNAMODB_TABLE,
+  ProjectionExpression: "#dt, id, price, drink, quantity, coupon_id, active",
+  FilterExpression: "#dt = :offer",
+  ExpressionAttributeNames: {
+    "#dt": "data_type"
+  },
+  ExpressionAttributeValues: {
+    ":offer": "offer"
+  }
 };
 
-module.exports.list = (event, context, callback) => {
+module.exports.listOffers = (event, context, callback) => {
   // fetch all pets from the database
   dynamoDb.scan(params, (error, result) => {
     // handle potential errors
