@@ -1,4 +1,4 @@
-service: pets-api-northcoders-mafia-120719
+service: pets-api-northcoders-mafia-110719
 
 provider:
   name: aws
