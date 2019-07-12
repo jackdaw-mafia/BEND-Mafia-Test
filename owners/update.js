@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
+const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-dependencies
 
 // The document client affords developers the use of native JavaScript
 // types instead of AttributeValues to simplify the JavaScript development
@@ -13,25 +13,29 @@ module.exports.update = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   // validation
-  if (typeof data.petName !== 'string' || typeof data.petBreed !== 'string') {
-    console.error('Validation Failed');
-    callback(new Error('Couldn\'t update the todo item.'));
+  if (typeof data.venueName !== "string" || typeof data.email !== "string") {
+    console.error("Validation Failed");
+    callback(new Error("Couldn't update owner profile"));
     return;
   }
-  
+
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Key: {
-      id: event.pathParameters.id,
+      id: event.pathParameters.id
     },
     ExpressionAttributeValues: {
-      ':petName': data.petName,
-      ':petBreed': data.petBreed,
-      ':checked': data.checked,
-      ':updatedAt': timestamp,
+      ":venueName": data.venueName,
+      ":email": data.email,
+      ":photoUri": data.photoUri,
+      ":shortDescription": data.shortDescription,
+      ":longDescription": data.longDescription,
+      ":checked": data.checked,
+      ":updatedAt": timestamp
     },
-    UpdateExpression: 'SET petName = :petName, petBreed = :petBreed, updatedAt = :updatedAt',
-    ReturnValues: 'ALL_NEW',
+    UpdateExpression:
+      "SET venueName = :venueName, email = :email, photoUri = :photoUri, shortDescription = :shortDescription, longDescription = :longDescription, updatedAt = :updatedAt",
+    ReturnValues: "ALL_NEW"
   };
 
   // update the todo in the database
@@ -39,14 +43,14 @@ module.exports.update = (event, context, callback) => {
     // handle potential errors
     if (error) {
       console.error(error);
-      callback(new Error('Couldn\'t update the todo item.'));
+      callback(new Error("Couldn't update the owners profile."));
       return;
     }
 
     // create a response
     const response = {
       statusCode: 200,
-      body: JSON.stringify(result.Attributes),
+      body: JSON.stringify(result.Attributes)
     };
     callback(null, response);
   });

@@ -25,35 +25,27 @@ functions:
           method: post
           cors: true
 
-  list:
-    handler: pets/list.list
-    events:
-      - http:
-          path: pets
-          method: get
-          cors: true
-
   get:
-    handler: pets/get.get
+    handler: owners/get.get
     events:
       - http:
-          path: pets/{id}
+          path: api/owners/{id}
           method: get
           cors: true
 
   update:
-    handler: pets/update.update
+    handler: owners/update.update
     events:
       - http:
-          path: pets/{id}
+          path: api/owners/{id}
           method: put
           cors: true
 
   delete:
-    handler: pets/delete.delete
+    handler: owners/delete.delete
     events:
       - http:
-          path: pets/{id}
+          path: api/owners/{id}
           method: delete
           cors: true
 
