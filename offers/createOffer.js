@@ -12,7 +12,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 module.exports.createOffer = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
-  if (typeof data.venueName !== "string" || typeof data.address !== "string") {
+  if (typeof data.data_type !== "string" || typeof data.type !== "string") {
     console.error("Validation Failed");
     callback(new Error("Couldn't create a new deal."));
     return;

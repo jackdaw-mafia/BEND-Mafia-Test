@@ -57,6 +57,14 @@ functions:
           method: post
           cors: true
 
+  listOffers:
+    handler: offers/listOffers.listOffers
+    events:
+      - http:
+          path: api/offers
+          method: get
+          cors: true
+
 resources:
   Resources:
     PetsTable:
