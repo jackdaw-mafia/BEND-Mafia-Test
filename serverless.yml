@@ -49,8 +49,8 @@ functions:
           method: delete
           cors: true
 
-  create:
-    handler: offers/create.create
+  createOffer:
+    handler: offers/create.createOffer
     events:
       - http:
           path: api/offers
@@ -64,12 +64,10 @@ resources:
       DeletionPolicy: Retain # Keeps around the DynamoDB resource when we redeploy/destroy
       Properties:
         AttributeDefinitions:
-          -
-            AttributeName: id
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          -
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
