@@ -9,7 +9,8 @@ const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-depe
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const params = {
   TableName: process.env.DYNAMODB_TABLE,
-  ProjectionExpression: "#dt, id, price, drink, quantity, coupon_id, active",
+  ProjectionExpression:
+    "#dt, id, price, drink, quantity, coupon_id, active, createdAt, updatedAt",
   FilterExpression: "#dt = :offer",
   ExpressionAttributeNames: {
     "#dt": "data_type"

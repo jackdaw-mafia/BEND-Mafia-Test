@@ -1,0 +1,167 @@
+{
+  "api": {
+    "GET /api": {
+      "description": "serves up a json representation of all the available endpoints of the api"
+    },
+    "POST /api/owners": {
+      "description": "request body accepts typeOf 'String' for all items; and serves an object of the posted new venue details",
+      "queries": [],
+      "exampleRequest": {
+        "phoneNumber": "87485959063",
+        "place_id": "iuhff6",
+        "venueName": "The White Paradise",
+        "address": "Deansgate",
+        "photoUri": "iuhdoidsax.com",
+        "email": "billy@theWhiteParadise.com",
+        "longDescription": "a cool semi paradise where people have experiences",
+        "data_type": "profile",
+        "shortDescription": "Paradise",
+        "longitude": "54675",
+        "latitude": "8697"
+      },
+      "exampleResponse": {
+        "comment": {
+          "phoneNumber": "87485959063",
+          "place_id": "iuhff6",
+          "createdAt": 1562944155846,
+          "venueName": "The White Paradise",
+          "address": "Deansgate",
+          "photoUri": "iuhdoidsax.com",
+          "email": "billy@theWhiteParadise.com",
+          "longDescription": "a cool semi paradise where people have experiences",
+          "data_type": "profile",
+          "shortDescription": "Paradise",
+          "updatedAt": 1562944155846,
+          "longitude": "54675",
+          "id": "03a27660-a4b7-11e9-ac27-97a3f1fac344",
+          "latitude": "8697"
+        }
+      }
+    },
+
+    "GET /api/owners/:id": {
+      "description": "serves an object of owner details denoted at the parametric endpoint :username",
+      "queries": [],
+      "exampleUrl": "https://uo5xzzqrwb.execute-api.us-east-1.amazonaws.com/dev/api/owners/03a27660-a4b7-11e9-ac27-97a3f1fac344",
+      "exampleResponse": {
+        "phoneNumber": "87485959063",
+        "place_id": "iuhff6",
+        "createdAt": 1562944155846,
+        "venueName": "The White Paradise",
+        "address": "Deansgate",
+        "photoUri": "iuhdoidsax.com",
+        "email": "billy@theWhiteParadise.com",
+        "longDescription": "a cool semi paradise where people have experiences",
+        "data_type": "profile",
+        "shortDescription": "Paradise",
+        "updatedAt": 1562944155846,
+        "longitude": "54675",
+        "id": "03a27660-a4b7-11e9-ac27-97a3f1fac344",
+        "latitude": "8697"
+      }
+    },
+
+    "PUT /api/owners/:id": {
+      "description": "request body accepts an owner id and serves an object of the updated owner profile details. All details must be updated",
+      "queries": [],
+      "exampleRequest": {
+        "phoneNumber": "87485959063",
+        "place_id": "iuhff6",
+        "venueName": "The White Paradise",
+        "address": "Deansgate",
+        "photoUri": "iuhdoidsax.com",
+        "email": "billy@theWhiteParadise.com",
+        "longDescription": "CHANGED TO A SLIGHTLY BETTER DESCRIPTION",
+        "data_type": "profile",
+        "shortDescription": "Paradise",
+        "longitude": "54675",
+        "latitude": "8697"
+      },
+      "exampleResponse": {
+        "phoneNumber": "87485959063",
+        "place_id": "iuhff6",
+        "createdAt": 1562944155846,
+        "venueName": "The White Paradise",
+        "address": "Deansgate",
+        "photoUri": "iuhdoidsax.com",
+        "email": "billy@theWhiteParadise.com",
+        "longDescription": "CHANGED TO A SLIGHTLY BETTER DESCRIPTION",
+        "data_type": "profile",
+        "shortDescription": "Paradise",
+        "updatedAt": 1562944155846,
+        "longitude": "54675",
+        "id": "03a27660-a4b7-11e9-ac27-97a3f1fac344",
+        "latitude": "8697"
+      }
+    },
+
+    "DELETE /api/owners/:id": {
+      "description": "deletes an owner profile based on owner id and serves a 204 confirming the deletion",
+      "exampleUrl": "https://uo5xzzqrwb.execute-api.us-east-1.amazonaws.com/dev/api/owners/03a27660-a4b7-11e9-ac27-97a3f1fac344",
+      "exampleRequest": {},
+      "exampleResponse": {}
+    },
+
+    "POST /api/offers": {
+      "description": "request body accepts typeOf 'String' for all items and serves an object of the posted offer for the venue",
+      "queries": [],
+      "exampleRequest": {
+        "quantity": "2",
+        "active": "false",
+        "coupon_id": "fdkfytn7684596",
+        "drink": "Coke",
+        "price": "£2.70",
+        "data_type": "offer"
+      },
+      "exampleResponse": {
+        "quantity": "2",
+        "active": "false",
+        "coupon_id": "fdkfytn7684596",
+        "drink": "Coke",
+        "id": "7f888e50-a560-11e9-b3f6-6da9438f384d",
+        "price": "£2.70",
+        "data_type": "offer"
+      }
+    },
+
+    "GET /api/offers": {
+      "description": "serves an array of objects of all offers for the venue",
+      "queries": [],
+      "exampleResponse": [
+        {
+          "quantity": "2",
+          "active": "false",
+          "coupon_id": "fdkfytn7684596",
+          "drink": "Coke",
+          "id": "7f888e50-a560-11e9-b3f6-6da9438f384d",
+          "price": "£2.70",
+          "data_type": "offer",
+          "createdAt": 1562944155846,
+          "updatedAt": 1562944155846
+        },
+        {
+          "quantity": "10",
+          "active": "true",
+          "coupon_id": "fgdtewjd7305",
+          "drink": "VodBull",
+          "id": "3a0fea10-a4b8-11e9-9785-a77d21ceb5bc",
+          "price": "£1.00",
+          "data_type": "offer",
+          "createdAt": 1562944155846,
+          "updatedAt": 1562944155846
+        },
+        {
+          "quantity": "2",
+          "active": "false",
+          "coupon_id": "fdkfytn7684596",
+          "drink": "Coke",
+          "id": "b73fa4d0-a4b8-11e9-9785-a77d21ceb5bc",
+          "price": "£2.70",
+          "data_type": "offer",
+          "createdAt": 1562944155846,
+          "updatedAt": 1562944155846
+        }
+      ]
+    }
+  }
+}

@@ -65,6 +65,14 @@ functions:
           method: get
           cors: true
 
+  getApi:
+    handler: api/endpoints.endpoints
+    events:
+      - http:
+          path: api
+          method: get
+          cors: true
+
 resources:
   Resources:
     PetsTable:
