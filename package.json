@@ -6,5 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "serverless-mocha-plugin": "^1.10.0",
+    "serverless-offline": "^5.7.3"
   }
 }
