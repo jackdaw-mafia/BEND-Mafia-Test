@@ -37,13 +37,13 @@ describe("Owners", () => {
   //     });
   //   });
 
-  it("getUser should return 404 if not found", () => {
+  it("owners/get should return 404 if not found", () => {
     return wrappedGet
       .run({ pathParameters: { id: "00000f1afa7663142200d252" } })
       .then(response => {
         expect(response).to.not.be.empty;
         expect(response.statusCode).to.equal(404);
-        expect(response.body).to.equal("");
+        expect(response.body).to.equal("Owner profile does not exist.");
       });
   });
 

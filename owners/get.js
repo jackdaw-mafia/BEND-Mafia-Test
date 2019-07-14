@@ -16,12 +16,16 @@ module.exports.get = (event, context, callback) => {
     }
   };
 
-  // fetch pet from the database
+  // fetch owner profile from the database
   dynamoDb.get(params, (error, result) => {
     // handle potential errors
     if (error) {
       console.error(error);
-      callback(new Error("Couldn't fetch the owner profile."));
+      const response = {
+        statusCode: 404,
+        body: "Owner profile does not exist."
+      };
+      callback(null, response);
       return;
     }
 

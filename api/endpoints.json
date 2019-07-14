@@ -106,12 +106,14 @@
       "description": "request body accepts typeOf 'String' for all items and serves an object of the posted offer for the venue",
       "queries": [],
       "exampleRequest": {
-        "quantity": "2",
-        "active": "false",
-        "coupon_id": "fdkfytn7684596",
-        "drink": "Coke",
-        "price": "£2.70",
-        "data_type": "offer"
+        "data_type": "offer",
+        "duration": "30",
+        "price": "£3.00",
+        "drink": "Gin and Tonic",
+        "quantity": "6",
+        "type": "Spirit mixer",
+        "coupon_id": "sdfghjuiop456789",
+        "active": "true"
       },
       "exampleResponse": {
         "quantity": "2",
