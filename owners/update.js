@@ -9,49 +9,62 @@ const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-depe
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.update = (event, context, callback) => {
-  const timestamp = new Date().getTime();
-  const data = JSON.parse(event.body);
-
-  // validation
-  if (typeof data.venueName !== "string" || typeof data.email !== "string") {
-    console.error("Validation Failed");
-    callback(new Error("Couldn't update owner profile"));
+  if (!event.body) {
+    const response = {
+      statusCode: 404,
+      body: "Owner profile does not exist to update."
+    };
+    callback(null, response);
     return;
-  }
+  } else {
+    const timestamp = new Date().getTime();
+    const data = JSON.parse(event.body);
 
-  const params = {
-    TableName: process.env.DYNAMODB_TABLE,
-    Key: {
-      id: event.pathParameters.id
-    },
-    ExpressionAttributeValues: {
-      ":venueName": data.venueName,
-      ":email": data.email,
-      ":photoUri": data.photoUri,
-      ":shortDescription": data.shortDescription,
-      ":longDescription": data.longDescription,
-      ":checked": data.checked,
-      ":updatedAt": timestamp
-    },
-    UpdateExpression:
-      "SET venueName = :venueName, email = :email, photoUri = :photoUri, shortDescription = :shortDescription, longDescription = :longDescription, updatedAt = :updatedAt",
-    ReturnValues: "ALL_NEW"
-  };
-
-  // update the todo in the database
-  dynamoDb.update(params, (error, result) => {
-    // handle potential errors
-    if (error) {
-      console.error(error);
-      callback(new Error("Couldn't update the owners profile."));
+    // validation
+    if (typeof data.venueName !== "string" || typeof data.email !== "string") {
+      console.error("Validation Failed");
+      callback(new Error("Couldn't update owner profile"));
       return;
     }
 
-    // create a response
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify(result.Attributes)
+    const params = {
+      TableName: process.env.DYNAMODB_TABLE,
+      Key: {
+        id: event.pathParameters.id
+      },
+      ExpressionAttributeValues: {
+        ":venueName": data.venueName,
+        ":email": data.email,
+        ":photoUri": data.photoUri,
+        ":shortDescription": data.shortDescription,
+        ":longDescription": data.longDescription,
+        ":checked": data.checked,
+        ":updatedAt": timestamp
+      },
+      UpdateExpression:
+        "SET venueName = :venueName, email = :email, photoUri = :photoUri, shortDescription = :shortDescription, longDescription = :longDescription, updatedAt = :updatedAt",
+      ReturnValues: "ALL_NEW"
     };
-    callback(null, response);
-  });
+
+    // update the todo in the database
+    dynamoDb.update(params, (error, result) => {
+      // handle potential errors
+      if (error) {
+        console.error(error);
+        const response = {
+          statusCode: 404,
+          body: "Owner profile does not exist to update."
+        };
+        callback(null, response);
+        return;
+      }
+
+      // create a response
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify(result.Attributes)
+      };
+      callback(null, response);
+    });
+  }
 };

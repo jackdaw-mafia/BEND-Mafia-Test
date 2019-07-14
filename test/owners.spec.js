@@ -47,13 +47,15 @@ describe("Owners", () => {
       });
   });
 
-  it("updateUser should return 404 if not found", () => {
-    return wrappedAdd
+  it("owners/update should return 404 if not found", () => {
+    return wrappedUpdate
       .run({ pathParameters: { id: "00000f1afa7663142200d252" } })
       .then(response => {
         expect(response).to.not.be.empty;
         expect(response.statusCode).to.equal(404);
-        expect(response.body).to.equal("");
+        expect(response.body).to.equal(
+          "Owner profile does not exist to update."
+        );
       });
   });
 
