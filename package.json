@@ -5,6 +5,7 @@
   "author": "Fernando Medina Corey",
   "license": "MIT",
   "dependencies": {
+    "serverless-dynamodb-local": "^0.2.38",
     "uuid": "^2.0.3"
   },
   "devDependencies": {

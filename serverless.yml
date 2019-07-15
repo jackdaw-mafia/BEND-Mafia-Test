@@ -94,3 +94,9 @@ resources:
 plugins:
   - serverless-offline
   - serverless-mocha-plugin
+  - serverless-dynamodb-local
+
+custom:
+  dynamodb:
+    stages:
+      - test
