@@ -21,7 +21,11 @@ module.exports.delete = (event, context, callback) => {
     // handle potential errors
     if (error) {
       console.error(error);
-      callback(new Error("Couldn't remove the owner profile"));
+      const response = {
+        statusCode: 404,
+        body: "Owner profile does not exist to remove"
+      };
+      callback(null, response);
       return;
     }
 

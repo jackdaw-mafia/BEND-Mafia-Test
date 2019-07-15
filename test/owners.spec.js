@@ -59,21 +59,31 @@ describe("Owners", () => {
       });
   });
 
-  it("removeUser should return 404 if not found", () => {
+  it("owners/delete should return 404 if not found", () => {
     return wrappedRemove
       .run({ pathParameters: { id: "00000f1afa7663142200d252" } })
       .then(response => {
         expect(response).to.not.be.empty;
         expect(response.statusCode).to.equal(404);
-        expect(response.body).to.equal("");
+        expect(response.body).to.equal(
+          "Owner profile does not exist to remove"
+        );
       });
   });
 
-  it("addUser should accept and store a new user", () => {
+  it("owners/create should accept and store a new user", () => {
     const payload = {
-      name: "John",
-      lastName: "Smith",
-      email: "user@email.com"
+      phoneNumber: "23456789",
+      place_id: "sdfghj",
+      venueName: "Test Venue",
+      address: "Test Address",
+      photoUri: "test.com",
+      email: "test@testVenue.com",
+      longDescription: "a test example for long description",
+      data_type: "profile",
+      shortDescription: "test description",
+      longitude: "3456",
+      latitude: "8697"
     };
     return wrappedAdd
       .run({ body: JSON.stringify(payload) })
@@ -83,9 +93,9 @@ describe("Owners", () => {
         expect(response.statusCode).to.equal(200);
 
         const result = JSON.parse(response.body);
-        expect(result._id).to.have.length.gt(0);
+        expect(result.id).to.have.length.gt(0);
 
-        return wrappedGet.run({ pathParameters: { id: result._id } });
+        return wrappedGet.run({ pathParameters: { id: result.id } });
       })
       .then(response => {
         expect(response).to.not.be.empty;
@@ -93,10 +103,18 @@ describe("Owners", () => {
 
         const remoteUser = JSON.parse(response.body);
         expect(remoteUser).to.be.an.instanceOf(Object);
-        expect(remoteUser._id).to.have.length.gt(0);
-        expect(remoteUser.name).to.equal(payload.name);
-        expect(remoteUser.lastName).to.equal(payload.lastName);
+        expect(remoteUser.id).to.have.length.gt(0);
+        expect(remoteUser.phoneNumber).to.equal(payload.phoneNumber);
+        expect(remoteUser.place_id).to.equal(payload.place_id);
+        expect(remoteUser.venueName).to.equal(payload.venueName);
+        expect(remoteUser.address).to.equal(payload.address);
+        expect(remoteUser.photoUri).to.equal(payload.photoUri);
         expect(remoteUser.email).to.equal(payload.email);
+        expect(remoteUser.longDescription).to.equal(payload.longDescription);
+        expect(remoteUser.data_type).to.equal(payload.data_type);
+        expect(remoteUser.shortDescription).to.equal(payload.shortDescription);
+        expect(remoteUser.longitude).to.equal(payload.longitude);
+        expect(remoteUser.latitude).to.equal(payload.latitude);
 
         return wrappedList.run({});
       })
