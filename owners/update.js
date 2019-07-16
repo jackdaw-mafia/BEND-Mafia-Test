@@ -33,8 +33,6 @@ module.exports.update = (event, context, callback) => {
         id: event.pathParameters.id
       },
       ExpressionAttributeValues: {
-        ":venueName": data.venueName,
-        ":email": data.email,
         ":photoUri": data.photoUri,
         ":shortDescription": data.shortDescription,
         ":longDescription": data.longDescription,
