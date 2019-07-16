@@ -7,6 +7,7 @@
       "description": "request body accepts typeOf 'String' for all items; and serves an object of the posted new venue details",
       "queries": [],
       "exampleRequest": {
+        "id": "cognito_id_here",
         "phoneNumber": "87485959063",
         "place_id": "iuhff6",
         "venueName": "The White Paradise",
@@ -106,6 +107,8 @@
       "description": "request body accepts typeOf 'String' for all items and serves an object of the posted offer for the venue",
       "queries": [],
       "exampleRequest": {
+        "id": "cognito_id_here",
+        "venueName": "venueName from state here",
         "data_type": "offer",
         "duration": "30",
         "price": "£3.00",
@@ -116,6 +119,7 @@
         "active": "true"
       },
       "exampleResponse": {
+        "venueName": "venueName from state here",
         "quantity": "2",
         "active": "false",
         "coupon_id": "fdkfytn7684596",
@@ -131,6 +135,7 @@
       "queries": [],
       "exampleResponse": [
         {
+          "venueName": "White Lion",
           "quantity": "2",
           "active": "false",
           "coupon_id": "fdkfytn7684596",
@@ -142,6 +147,7 @@
           "updatedAt": 1562944155846
         },
         {
+          "venueName": "Blue Whale",
           "quantity": "10",
           "active": "true",
           "coupon_id": "fgdtewjd7305",
@@ -153,6 +159,7 @@
           "updatedAt": 1562944155846
         },
         {
+          "venueName": "Green Monster",
           "quantity": "2",
           "active": "false",
           "coupon_id": "fdkfytn7684596",

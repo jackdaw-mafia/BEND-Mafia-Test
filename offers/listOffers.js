@@ -10,7 +10,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const params = {
   TableName: process.env.DYNAMODB_TABLE,
   ProjectionExpression:
-    "#dt, id, price, drink, quantity, coupon_id, active, createdAt, updatedAt",
+    "#dt, id, price, drink, quantity, coupon_id, active, createdAt, updatedAt, venueName",
   FilterExpression: "#dt = :offer",
   ExpressionAttributeNames: {
     "#dt": "data_type"

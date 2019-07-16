@@ -1,6 +1,6 @@
 "use strict";
 
-const uuid = require("uuid");
+//const uuid = require("uuid");
 const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-dependencies
 
 // The document client affords developers the use of native JavaScript
@@ -21,7 +21,8 @@ module.exports.createOffer = (event, context, callback) => {
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Item: {
-      id: uuid.v1(),
+      id: data.id,
+      venueName: data.venueName,
       data_type: data.data_type,
       duration: data.duration,
       price: data.price,
