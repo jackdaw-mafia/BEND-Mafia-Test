@@ -8,7 +8,7 @@
     "aws-sdk": "^2.493.0",
     "chai": "^4.2.0",
     "jest": "^24.8.0",
-    "serverless": "^1.47.0",
+    "serverless": "^1.83.3",
     "serverless-dynamodb-client": "0.0.2",
     "serverless-dynamodb-local": "^0.2.38",
     "supertest": "^4.0.2",
